@@ -13,7 +13,7 @@ const StyledSongLabel = styled.div`
 	}
 `
 
-function SongLabel({style}) {
+function SongLabel({style, nowPlaying}) {
 	return (
         <StyledSongLabel style={style}>
             <div className='song'>song</div>
