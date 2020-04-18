@@ -2,11 +2,11 @@ import React from 'react';
 import CoverArt from '../common/CoverArt';
 import SongLabel from '../common/SongLabel';
 
-function Album() {
+function Album({album}) {
 	return (
 		<div>
-			<CoverArt style={{marginBottom: '10px'}}/>
-			<SongLabel/>
+			<CoverArt image={album.images[1].url} style={{marginBottom: '10px'}}/>
+			<SongLabel labels={[album.name, album.artists[0].name]}/>
 		</div>
 	);
 }

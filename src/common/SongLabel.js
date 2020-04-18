@@ -1,29 +1,40 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 const StyledSongLabel = styled.div`
-	color: ${({theme}) => theme.color.dark};
-	& .song {
-		text-transform: capitalize;
-		font-size: ${({theme}) => theme.fontSize.body};
-	}
-	& .artist {
-		text-transform: capitalize;
-		font-size: ${({theme}) => theme.fontSize.minor};
-	}
+	${({theme}) => css`
+		color: ${theme.color.dark};
+		width: 100%;
+		& .primary {
+			text-transform: capitalize;
+			font-size: ${theme.fontSize.body};
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow-x: hidden;
+		}
+		& .secondary {
+			text-transform: uppercase;
+			font-size: ${theme.fontSize.minor};
+			white-space: nowrap;
+			font-weight: bold;
+			opacity: 0.7;
+			text-overflow: ellipsis;
+			overflow-x: hidden;
+		}
+	`}
 `
 
 function SongLabel({style, labels}) {
 	return (
         <StyledSongLabel style={style}>
-            <div className='song'>{labels[0]}</div>
-            <div className='artist'>{labels[1]}</div>
+            <div className='primary'>{labels[0]}</div>
+            <div className='secondary'>{labels[1]}</div>
         </StyledSongLabel>
 	);
 }
 
 SongLabel.defaultProps = {
-	labels: ['label1', 'label2']
+	labels: ['primary', 'secondary']
 }
 
 export default SongLabel;

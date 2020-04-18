@@ -31,7 +31,7 @@ function Player() {
 	return (
 		nowPlaying &&
 		<StyledPlayer>
-			<CoverArt style={{marginBottom: 10}}/>
+			<CoverArt image={nowPlaying.item.album.images[1].url} style={{marginBottom: 10}}/>
 			<SongLabel labels={[nowPlaying.item.name, nowPlaying.item.artists[0].name]}/>
 			<PlayControls nowPlaying={nowPlaying}/>
 			<PlayingNext/>

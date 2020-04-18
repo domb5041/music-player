@@ -28,8 +28,6 @@ const theme = {
 function App() {	
 	return (
 		<ThemeProvider theme={theme}>
-			<a href='http://localhost:8888'>log in</a>
-			{/* {response && response.item.name} */}
 			<StyledApp>
 				<Navigation/>	
 				<Browser/>

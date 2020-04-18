@@ -7,7 +7,9 @@ const StyledNavItem = styled.div`
     font-size: ${({theme}) => theme.fontSize.body};
     text-transform: capitalize;
     padding: 5px 10px;
+    text-decoration: none;
     color: ${({theme}) => theme.color.dark};
+    cursor: pointer;
     & > i {
         margin-right: 10px;
         background-color: ${({theme}) => theme.color.dark};
@@ -17,10 +19,10 @@ const StyledNavItem = styled.div`
     }
 `
 
-const NavItem = ({icon, label}) =>
-    <StyledNavItem>
+const NavItem = ({icon, label, as, href}) =>
+    <StyledNavItem as={as} href={href}>
         <i className={icon || "fas fa-circle"}></i>
-        <label>{label || 'label'}</label>
+        <span>{label || 'label'}</span>
     </StyledNavItem>
 
 export default NavItem;
