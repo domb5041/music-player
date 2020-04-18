@@ -43,19 +43,24 @@ const StyledPlayback = styled.div`
 	}
 `
 
-function PlayControls() {
+function PlayControls({nowPlaying}) {
 	return (
 		<StyledPlayControls>
 			<StyledPlayback>
 				<div>
-					<span>start</span>
-					<span>finish</span>
+					<span>{nowPlaying.progress_ms}</span>
+					<span>{nowPlaying.item.duration_ms}</span>
 				</div>
-				<input type="range"/>
+				<input
+					type="range"
+					min={0}
+					value={nowPlaying.progress_ms}
+					max={nowPlaying.item.duration_ms}
+				/>
 			</StyledPlayback>
 			<StyledSkipPausePlay>
 				<i className="fas fa-backward"></i>
-				<i className="fas fa-play"></i>
+				<i className={nowPlaying.is_playing ? "fas fa-pause" : "fas fa-play"}></i>
 				<i className="fas fa-forward"></i>
 			</StyledSkipPausePlay>
 			<StyledPlayback>

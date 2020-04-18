@@ -13,13 +13,17 @@ const StyledSongLabel = styled.div`
 	}
 `
 
-function SongLabel({style, nowPlaying}) {
+function SongLabel({style, labels}) {
 	return (
         <StyledSongLabel style={style}>
-            <div className='song'>song</div>
-            <div className='artist'>song</div>
+            <div className='song'>{labels[0]}</div>
+            <div className='artist'>{labels[1]}</div>
         </StyledSongLabel>
 	);
+}
+
+SongLabel.defaultProps = {
+	labels: ['label1', 'label2']
 }
 
 export default SongLabel;
