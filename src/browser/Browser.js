@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Album from './Album';
-import {params} from '../common/utilityFunctions'
-import axios from 'axios'
+import axios from '../common/axios'
 
 const StyledBrowser = styled.div`
 	flex: 1;
@@ -21,26 +20,21 @@ const StyledAlbums = styled.div`
 function Browser() {
 	const [albums, setAlbums] = useState(null)
 	useEffect(() => {
-		let config = {
-			headers: {
-				'Authorization': 'Bearer ' + params().access_token,
-			}
-		}
-		axios.get('https://api.spotify.com/v1/me/albums', config)
-		.then(response => {
-			console.log(response);
-			setAlbums(response.data.items);
-		})
+		axios
+			.get('/albums')
+			.then(res => setAlbums(res.data.items))
+			.catch(err => {console.log(err, err.response)})
 	}, [])
 
 	return (
-		albums &&
 		<StyledBrowser>
-			<StyledAlbums>
-				{albums.map((album, i) =>
-					<Album key={i} album={album.album}/>
-				)}
-			</StyledAlbums>
+			{albums &&
+				<StyledAlbums>
+					{albums.map((album, i) =>
+						<Album key={i} album={album.album}/>
+					)}
+				</StyledAlbums>
+			}
 		</StyledBrowser>
 	);
 }

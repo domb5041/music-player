@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import axios from '../common/axios'
 
 const StyledPlayControls =  styled.div`
 	margin-top: 30px;
@@ -14,6 +15,7 @@ const StyledSkipPausePlay = styled.div`
 	& > i {
 		font-size: 25px;
 		padding: 20px;
+		cursor: pointer;
 	}
 `
 
@@ -44,24 +46,53 @@ const StyledPlayback = styled.div`
 `
 
 function PlayControls({nowPlaying}) {
+	const togglePlayback = () => {
+		axios
+		.put(`player/${nowPlaying.is_playing ? 'pause' : 'play'}`)
+		.catch(err => {console.log(err, err.response)})
+	}
+
+	const skipTrack = (direction) => {
+		axios
+		.post(`player/${direction === 'forward' ? 'next' : 'previous'}`)
+		.catch(err => {console.log(err, err.response)})
+	}
+
+	const seekPlayback = (e) => {
+		axios
+		.put('player/seek', {position_ms: e.target.value})
+		.catch(err => {console.log(err, err.response)})
+	}
+
 	return (
 		<StyledPlayControls>
 			<StyledPlayback>
 				<div>
 					<span>{nowPlaying.progress_ms}</span>
-					<span>{nowPlaying.item.duration_ms}</span>
+					<span>{nowPlaying.item.duration_ms - nowPlaying.progress_ms}</span>
 				</div>
 				<input
 					type="range"
 					min={0}
 					value={nowPlaying.progress_ms}
 					max={nowPlaying.item.duration_ms}
+					step={nowPlaying.item.duration_ms / 1000}
+					onChange={seekPlayback}
 				/>
 			</StyledPlayback>
 			<StyledSkipPausePlay>
-				<i className="fas fa-backward"></i>
-				<i className={nowPlaying.is_playing ? "fas fa-pause" : "fas fa-play"}></i>
-				<i className="fas fa-forward"></i>
+				<i
+					className="fas fa-backward"
+					onClick={() => skipTrack('backward')}
+				/>
+				<i
+					className={nowPlaying.is_playing ? "fas fa-pause" : "fas fa-play"}
+					onClick={togglePlayback}
+				/>
+				<i
+					className="fas fa-forward"
+					onClick={() => skipTrack('forward')}
+				/>
 			</StyledSkipPausePlay>
 			<StyledPlayback>
 				<input type="range"/>

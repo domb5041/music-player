@@ -4,8 +4,7 @@ import PlayControls from './PlayControls'
 import PlayingNext from './PlayingNext'
 import CoverArt from '../common/CoverArt'
 import SongLabel from '../common/SongLabel'
-import axios from 'axios';
-import {params} from '../common/utilityFunctions'
+import axios from '../common/axios';
 
 const StyledPlayer = styled.div`
 	border-left: 1px solid ${props => props.theme.color.dark};
@@ -15,26 +14,26 @@ const StyledPlayer = styled.div`
 
 function Player() {
 	const [nowPlaying, setNowPlaying] = useState(null)
-	useEffect(() => {
-		let config = {
-			headers: {
-				'Authorization': 'Bearer ' + params().access_token,
-			}
-		}
-		axios.get('https://api.spotify.com/v1/me/player/currently-playing', config)
-		.then(response => {
-			console.log(response);
-			setNowPlaying(response.data);
-		})
-	}, [])
+	
+	useEffect(() => {setInterval(getNowPlaying, 1000)}, [])
+
+	const getNowPlaying = () => {
+		axios
+		.get('player/currently-playing')
+		.then(res => setNowPlaying(res.data))
+		.catch(err => {console.log(err, err.response)})
+	}
 
 	return (
-		nowPlaying &&
 		<StyledPlayer>
-			<CoverArt image={nowPlaying.item.album.images[1].url} style={{marginBottom: 10}}/>
-			<SongLabel labels={[nowPlaying.item.name, nowPlaying.item.artists[0].name]}/>
-			<PlayControls nowPlaying={nowPlaying}/>
-			<PlayingNext/>
+			{nowPlaying &&
+				<>
+					<CoverArt image={nowPlaying.item.album.images[1].url} style={{marginBottom: 10}}/>
+					<SongLabel labels={[nowPlaying.item.name, nowPlaying.item.artists[0].name]}/>
+					<PlayControls nowPlaying={nowPlaying}/>
+					<PlayingNext/>
+				</>
+			}
 		</StyledPlayer>
 	);
 }
