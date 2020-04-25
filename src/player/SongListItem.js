@@ -9,7 +9,7 @@ const StyledSongListItem = styled.div`
 	column-gap: 10px;
 	align-items: center;
 	padding: 5px 0;
-	color: ${({theme}) => theme.color.dark};
+	color: ${({theme}) => theme.color.base[2]};
 `
 
 function SongListItem() {

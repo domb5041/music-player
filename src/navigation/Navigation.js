@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import NavItem from './NavItem'
 
 const StyledNavigation = styled.div`
-	border-right: 1px solid ${props => props.theme.color.dark};
+	border-right: 1px solid ${props => props.theme.color.base[0]};
 	padding: 15px 0;
 	display: flex;
 	flex-direction: column;

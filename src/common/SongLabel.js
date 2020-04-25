@@ -3,7 +3,6 @@ import styled, {css} from 'styled-components'
 
 const StyledSongLabel = styled.div`
 	${({theme}) => css`
-		color: ${theme.color.dark};
 		width: 100%;
 		& .primary {
 			text-transform: capitalize;
@@ -11,6 +10,7 @@ const StyledSongLabel = styled.div`
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			overflow-x: hidden;
+			color: ${theme.color.base[4]}
 		}
 		& .secondary {
 			text-transform: uppercase;
@@ -20,6 +20,7 @@ const StyledSongLabel = styled.div`
 			opacity: 0.7;
 			text-overflow: ellipsis;
 			overflow-x: hidden;
+			color: ${theme.color.base[2]}
 		}
 	`}
 `

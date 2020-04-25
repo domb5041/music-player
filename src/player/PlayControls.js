@@ -11,7 +11,7 @@ const StyledSkipPausePlay = styled.div`
 	display: flex;
 	justify-content: center;
 	margin: 20px 0;
-	color: ${({theme}) => theme.color.dark};
+	color: ${({theme}) => theme.color.base[4]};
 	& > i {
 		font-size: 25px;
 		padding: 20px;
@@ -25,7 +25,7 @@ const StyledPlayback = styled.div`
 		outline: none;
 		width: 100%;
 		height: 4px;
-		background: ${({theme}) => theme.color.dark};
+		background: ${({theme}) => theme.color.base[0]};
 		border-radius: 5px;
 		display: block;
 		margin: 7px 0;
@@ -33,7 +33,7 @@ const StyledPlayback = styled.div`
 			-webkit-appearance: none;
 			width: 10px;
 			height: 10px;
-			background: ${({theme}) => theme.color.dark};
+			background: ${({theme}) => theme.color.base[4]};
 			border-radius: 10px;
 		}
 	}
@@ -41,7 +41,7 @@ const StyledPlayback = styled.div`
 		display: flex;
 		justify-content: space-between;
 		font-size: ${({theme}) => theme.fontSize.minor};
-		color: ${({theme}) => theme.color.dark}
+		color: ${({theme}) => theme.color.base[3]}
 	}
 `
 
@@ -64,12 +64,21 @@ function PlayControls({nowPlaying}) {
 		.catch(err => {console.log(err, err.response)})
 	}
 
+	const formatTime = (ms) => {
+		const seconds = Math.round(ms / 1000)
+		const minutes = Math.floor(seconds / 60);
+		const remainderSeconds = seconds % 60;
+		const zero = remainderSeconds < 10 ? '0' : '';
+		const time = minutes + ':' + zero + remainderSeconds
+		return time;
+	}
+
 	return (
 		<StyledPlayControls>
 			<StyledPlayback>
 				<div>
-					<span>{nowPlaying.progress_ms}</span>
-					<span>{nowPlaying.item.duration_ms - nowPlaying.progress_ms}</span>
+					<span>{formatTime(nowPlaying.progress_ms)}</span>
+					<span>-{formatTime(nowPlaying.item.duration_ms - nowPlaying.progress_ms)}</span>
 				</div>
 				<input
 					type="range"

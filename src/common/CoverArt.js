@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 
 const StyledCoverArt = styled.div`
 	width: 100%;
@@ -10,9 +10,9 @@ const StyledCoverArt = styled.div`
 	justify-content: center;
 	position: relative;
 	overflow: hidden;
+	box-shadow: 0 3px 15px rgba(0,0,0,0.5);
 	& img {
-		width: 100%;
-		height: 100%;
+		width: 101%;
 		position: absolute;
 		top: 50%;
 		left: 50%;

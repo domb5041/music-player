@@ -1,22 +1,24 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 const StyledNavItem = styled.div`
-    display: flex;
-    align-items: center;
-    font-size: ${({theme}) => theme.fontSize.body};
-    text-transform: capitalize;
-    padding: 5px 10px;
-    text-decoration: none;
-    color: ${({theme}) => theme.color.dark};
-    cursor: pointer;
-    & > i {
-        margin-right: 10px;
-        background-color: ${({theme}) => theme.color.dark};
-        padding: 5px;
-        border-radius: 3px;
-        color: ${({theme}) => theme.color.light};
-    }
+    ${({theme}) => css`
+        display: flex;
+        align-items: center;
+        font-size: ${theme.fontSize.body};
+        text-transform: capitalize;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: ${theme.color.base[4]};
+        cursor: pointer;
+        & > i {
+            margin-right: 10px;
+            background-color: ${theme.color.base[0]};
+            padding: 5px;
+            border-radius: 3px;
+            color: ${theme.color.base[4]};
+        }
+    `}
 `
 
 const NavItem = ({icon, label, as, href}) =>

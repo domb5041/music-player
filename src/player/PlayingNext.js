@@ -11,12 +11,12 @@ const StyledHeaderRow = styled.div`
 	align-items: center;
 	column-gap: 5px;
 	margin-bottom: 10px;
-	color: ${({theme}) => theme.color.dark};
+	color: ${({theme}) => theme.color.base[4]};
 	font-size: ${({theme}) => theme.fontSize.body};
 	& > i {
 		padding: 5px;
-		background: ${({theme}) => theme.color.dark};
-		color: ${({theme}) => theme.color.light};
+		background: ${({theme}) => theme.color.base[0]};
+		color: ${({theme}) => theme.color.base[4]};
 		border-radius: 5px;
 	}
 `
