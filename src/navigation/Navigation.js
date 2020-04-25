@@ -24,8 +24,8 @@ function Navigation() {
 				<NavItem
 					as='a'
 					icon='fas fa-sign-in-alt'
-					href='http://localhost:8888'
-					label='log in'
+					href='http://localhost:8888/login'
+					label='log in with Spotify'
 				/>
 			</div>
 		</StyledNavigation>

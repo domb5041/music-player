@@ -13,7 +13,7 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var passwords = require('../passwords')
+var passwords = require('./passwords')
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 /**
