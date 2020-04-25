@@ -12,10 +12,8 @@ var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
-import {client_id, client_secret} from '../passwords'
 
-var client_id = client_id; // Your client id
-var client_secret = client_secret; // Your secret
+var passwords = require('../passwords')
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 /**
@@ -51,7 +49,7 @@ app.get('/login', function(req, res) {
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
-      client_id: client_id,
+      client_id: passwords.client_id,
       scope: scope,
       redirect_uri: redirect_uri,
       state: state
@@ -82,7 +80,7 @@ app.get('/callback', function(req, res) {
         grant_type: 'authorization_code'
       },
       headers: {
-        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+        'Authorization': 'Basic ' + (new Buffer(passwords.client_id + ':' + passwords.client_secret).toString('base64'))
       },
       json: true
     };
@@ -126,7 +124,7 @@ app.get('/refresh_token', function(req, res) {
   var refresh_token = req.query.refresh_token;
   var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
-    headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
+    headers: { 'Authorization': 'Basic ' + (new Buffer(passwords.client_id + ':' + passwords.client_secret).toString('base64')) },
     form: {
       grant_type: 'refresh_token',
       refresh_token: refresh_token
