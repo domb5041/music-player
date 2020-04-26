@@ -4,6 +4,7 @@ import Browser from './browser/Browser'
 import Player from './player/Player'
 import styled, { ThemeProvider } from 'styled-components';
 import axios from './common/axios';
+import _ from 'lodash'
 
 const StyledApp = styled.div`
 	display: grid;
@@ -56,7 +57,7 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<StyledApp>
-				{nowPlaying && <img src={nowPlaying.item.album.images[1].url}/>}
+				<img src={_.get(nowPlaying, 'item.album.images[1].url', require('./common/blank album.png'))}/>
 				<Navigation/>	
 				<Browser/>
 				<Player nowPlaying={nowPlaying}/>

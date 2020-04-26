@@ -35,7 +35,7 @@ function SongLabel({style, labels}) {
 }
 
 SongLabel.defaultProps = {
-	labels: ['primary', 'secondary']
+	labels: ['', '']
 }
 
 export default SongLabel;
