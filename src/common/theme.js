@@ -7,7 +7,7 @@ export default {
 			'rgba(255,255,255,0.8)',
 			'rgba(255,255,255,1)',
 		],
-		accent: '#FF4242'
+		accent: '#64D760'
 	},
 	fontSize: {
 		title: '30px',

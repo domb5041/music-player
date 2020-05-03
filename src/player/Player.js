@@ -14,7 +14,7 @@ const StyledPlayer = styled.div`
 `
 
 const StyledShuffleRepeat = styled.div`
-	${({ theme, active }) => css`
+	${({ theme }) => css`
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		align-items: center;
@@ -23,13 +23,16 @@ const StyledShuffleRepeat = styled.div`
 		margin-top: 30px;
 		color: ${theme.color.base[4]};
 		font-size: ${theme.fontSize.body};
-		& > i {
-			padding: 5px;
-			background: ${active ? theme.color.accent : theme.color.base[0]};
-			color: ${theme.color.base[4]};
-			border-radius: 5px;
-			text-align: center;
-		}
+	`}
+`
+
+const StyledToggle = styled.i`
+	${({ theme, active }) => css`
+		padding: 5px;
+		background: ${active ? theme.color.base[4] : theme.color.base[0]};
+		color: ${active ? '#333333' : theme.color.base[4]};
+		border-radius: 5px;
+		text-align: center;
 	`}
 `
 
@@ -60,8 +63,8 @@ export default function Player({nowPlaying}) {
 				</div>
 			</StyledSlider>
 			<StyledShuffleRepeat >
-				<i className="fas fa-random"></i>
-				<i className="fas fa-sync-alt"></i>
+				<StyledToggle active className="fas fa-random"></StyledToggle>
+				<StyledToggle className="fas fa-sync-alt"></StyledToggle>
 			</StyledShuffleRepeat>
 		</StyledPlayer>
 	);

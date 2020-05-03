@@ -17,8 +17,8 @@ const StyledNavItem = styled(Link)`
 		user-select: none;
 		& > i {
 			margin-right: 10px;
-			background-color: ${active ? theme.color.accent : theme.color.base[0]};
-			color: ${theme.color.base[4]};
+			background-color: ${active ? theme.color.base[4] : theme.color.base[0]};
+			color: ${active ? '#333333' : theme.color.base[4]};
 			padding: 5px;
 			border-radius: 3px;
 		}
