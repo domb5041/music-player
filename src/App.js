@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Navigation from './navigation/Navigation'
 import Browser from './browser/Browser'
 import Player from './player/Player'
@@ -34,7 +34,8 @@ const theme = {
 			'rgba(255,255,255,0.6)',
 			'rgba(255,255,255,0.8)',
 			'rgba(255,255,255,1)',
-		]
+		],
+		accent: '#FF4242'
 	},
 	fontSize: {
 		title: '30px',
@@ -44,23 +45,23 @@ const theme = {
 	}
 }
 
-function App() {	
+function App() {
 	const [nowPlaying, setNowPlaying] = useState(null)
-	
+
 	useEffect(() => {
 		axios
-		.get('player/currently-playing')
-		.then(res => setNowPlaying(res.data))
-		.catch(err => {console.log(err, err.response)})
+			.get('player/currently-playing')
+			.then(res => setNowPlaying(res.data))
+			.catch(err => { console.log(err, err.response) })
 	}, [])
 
 	return (
 		<ThemeProvider theme={theme}>
 			<StyledApp>
-				<img src={_.get(nowPlaying, 'item.album.images[1].url', require('./common/blank album.png'))}/>
-				<Navigation/>	
-				<Browser/>
-				<Player nowPlaying={nowPlaying}/>
+				<img src={_.get(nowPlaying, 'item.album.images[1].url', require('./common/blank album.png'))} />
+				<Navigation />
+				<Browser />
+				<Player nowPlaying={nowPlaying} />
 			</StyledApp>
 		</ThemeProvider>
 	);

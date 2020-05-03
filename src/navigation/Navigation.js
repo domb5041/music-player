@@ -10,15 +10,30 @@ const StyledNavigation = styled.div`
 	justify-content: space-between;
 `
 
-function Navigation() {
+export default function Navigation() {
 	return (
 		<StyledNavigation>
 			<div>
-				<NavItem icon='fas fa-clock' label='recently added'/>
-				<NavItem icon='fas fa-guitar' label='artists'/>
-				<NavItem icon='fas fa-compact-disc' label='albums'/>
-				<NavItem icon='fas fa-music' label='songs'/>
-				<NavItem icon='fas fa-arrow-circle-down' label='downloaded'/>
+				<NavItem
+					to='/artists'
+					icon='fas fa-guitar'
+					label='artists'
+				/>
+				<NavItem
+					to='/albums'
+					icon='fas fa-compact-disc'
+					label='albums'
+				/>
+				<NavItem
+					to='/songs'
+					icon='fas fa-music'
+					label='songs'
+				/>
+				<NavItem
+					to='/playlists'
+					icon='fas fa-list-ol'
+					label='playlists'
+				/>
 			</div>
 			<div>
 				<NavItem
@@ -31,5 +46,3 @@ function Navigation() {
 		</StyledNavigation>
 	);
 }
-
-export default Navigation;

@@ -1,30 +1,36 @@
 import React from 'react';
-import styled, {css} from 'styled-components'
+import styled, { css } from 'styled-components'
+import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 
-const StyledNavItem = styled.div`
-    ${({theme}) => css`
-        display: flex;
-        align-items: center;
-        font-size: ${theme.fontSize.body};
-        text-transform: capitalize;
-        padding: 5px 10px;
-        text-decoration: none;
-        color: ${theme.color.base[4]};
-        cursor: pointer;
-        & > i {
-            margin-right: 10px;
-            background-color: ${theme.color.base[0]};
-            padding: 5px;
-            border-radius: 3px;
-            color: ${theme.color.base[4]};
-        }
-    `}
+const StyledNavItem = styled(Link)`
+	${({ theme, active }) => css`
+		display: flex;
+		align-items: center;
+		font-size: ${theme.fontSize.body};
+		text-transform: capitalize;
+		padding: 5px 10px;
+		text-decoration: none;
+		color: ${theme.color.base[4]};
+		cursor: pointer;
+		background: ${active && theme.color.base[0]};
+		user-select: none;
+		& > i {
+			margin-right: 10px;
+			background-color: ${active ? theme.color.accent : theme.color.base[0]};
+			color: ${theme.color.base[4]};
+			padding: 5px;
+			border-radius: 3px;
+		}
+	`}
 `
 
-const NavItem = ({icon, label, as, href}) =>
-    <StyledNavItem as={as} href={href}>
-        <i className={icon || "fas fa-circle"}></i>
-        <span>{label || 'label'}</span>
-    </StyledNavItem>
-
-export default NavItem;
+export default function NavItem({ icon, label, as, to }) {
+	const location = useLocation();
+	return (
+		<StyledNavItem as={as} to={to} active={location.pathname === to}>
+			<i className={icon || "fas fa-circle"}></i>
+			<span>{label || 'label'}</span>
+		</StyledNavItem>
+	)
+}
