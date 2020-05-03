@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import CoverArt from '../common/CoverArt'
 import SongLabel from '../common/SongLabel'
 import _ from 'lodash'
@@ -14,21 +14,23 @@ const StyledPlayer = styled.div`
 `
 
 const StyledShuffleRepeat = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	align-items: center;
-	column-gap: 5px;
-	margin-bottom: 10px;
-	margin-top: 30px;
-	color: ${({theme}) => theme.color.base[4]};
-	font-size: ${({theme}) => theme.fontSize.body};
-	& > i {
-		padding: 5px;
-		background: ${({theme}) => theme.color.base[0]};
-		color: ${({theme}) => theme.color.base[4]};
-		border-radius: 5px;
-		text-align: center;
-	}
+	${({ theme, active }) => css`
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		column-gap: 10px;
+		margin-bottom: 10px;
+		margin-top: 30px;
+		color: ${theme.color.base[4]};
+		font-size: ${theme.fontSize.body};
+		& > i {
+			padding: 5px;
+			background: ${active ? theme.color.accent : theme.color.base[0]};
+			color: ${theme.color.base[4]};
+			border-radius: 5px;
+			text-align: center;
+		}
+	`}
 `
 
 export default function Player({nowPlaying}) {
@@ -57,7 +59,7 @@ export default function Player({nowPlaying}) {
 					<i className="fas fa-volume-up"></i>
 				</div>
 			</StyledSlider>
-			<StyledShuffleRepeat>
+			<StyledShuffleRepeat >
 				<i className="fas fa-random"></i>
 				<i className="fas fa-sync-alt"></i>
 			</StyledShuffleRepeat>

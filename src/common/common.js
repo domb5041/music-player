@@ -37,6 +37,7 @@ export const StyledSlider = styled.div`
 		display: flex;
 		justify-content: space-between;
 		font-size: ${({theme}) => theme.fontSize.minor};
-		color: ${({theme}) => theme.color.base[3]}
+		color: ${({theme}) => theme.color.base[3]};
+		user-select: none;
 	}
 `

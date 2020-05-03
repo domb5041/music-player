@@ -10,7 +10,8 @@ const StyledCoverArt = styled.div`
 	justify-content: center;
 	position: relative;
 	overflow: hidden;
-	box-shadow: 0 3px 15px rgba(0,0,0,0.5);
+	user-select: none;
+	box-shadow: 0 3px 15px rgba(0,0,0,0.3);
 	& img {
 		width: 101%;
 		position: absolute;
@@ -21,7 +22,7 @@ const StyledCoverArt = styled.div`
 `
 
 const CoverArt = ({style, image}) =>
-	<StyledCoverArt style={style}>
+	<StyledCoverArt style={style} image={image}>
 		<img src={image}/>
 	</StyledCoverArt>
 
